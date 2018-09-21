@@ -1,12 +1,13 @@
 const game = new Game();
-const startBtn = document.getElementById("begin-game");
 
-startBtn.addEventListener("click", () => {
-	game.startGame();
-	startBtn.style.display = "none";
-	document.getElementById("play-area").style.opacity = "1";
+// When the button with the ID begin-game is clicked, this will fire
+document.getElementById('begin-game').addEventListener('click', function() {
+    game.startGame();
+    this.style.display = 'none';
+    document.getElementById('play-area').style.opacity = '1';
 });
 
+// Listens for keypresses
 document.addEventListener('keydown', function(event) {
-	game.handleKeydown(event);
+    game.handleKeydown(event);
 });
