@@ -19,4 +19,18 @@ class Space {
 
         document.getElementById("mask").appendChild(svgSpace);     
 	}	
+
+	mark(token) {
+		this.token = token;
+	}
+
+	getOwner() {
+		if (this.token === null) {
+			return null;
+		} else {
+			return this.token.owner;;
+		}
+	}
+
+
 }
