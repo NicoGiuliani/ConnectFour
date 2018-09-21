@@ -34,26 +34,26 @@ class Game {
     }
     
     playToken(){
-    let spaces = this.board.spaces;
-    let activeToken = this.activePlayer.activeToken;
-    let targetColumn = spaces[activeToken.columnLocation];
-    let targetSpace = null;
+	    let spaces = this.board.spaces;
+	    let activeToken = this.activePlayer.activeToken;
+	    let targetColumn = spaces[activeToken.columnLocation];
+	    let targetSpace = null;
 
-    for (let space of targetColumn) {
-        if (space.token === null) {
-            targetSpace = space;
-        }
-    }
+	    for (let space of targetColumn) {
+	        if (space.token === null) {
+	            targetSpace = space;
+	        }
+	    }
 
-    if (targetSpace !== null) {
-        const game = this;
-        game.ready = false;
+	    if (targetSpace !== null) {
+	        const game = this;
+	        game.ready = false;
 
-        activeToken.drop(targetSpace, function(){
-            game.updateGameState(activeToken, targetSpace);           
-        });  
-    }              
-}
+	        activeToken.drop(targetSpace, function(){
+	            game.updateGameState(activeToken, targetSpace);           
+	        });  
+	    }              
+	}
 
 
 
@@ -128,19 +128,20 @@ class Game {
 	updateGameState(token, target) {
 		target.mark(token);
 
-		if (!this.checkForWin(target)) {
-
+        if (!this.checkForWin(target)) {
+            console.log('no win');
 			this.switchPlayers();
-
-			if (this.activePlayer.checkTokens()) {
-				this.activePlayer.activeToken.drawHTMLToken();
-				this.ready = true;
-			} else {
-				this.gameOver("No more tokens");
-			}
-		} else {
-			this.gameOver(`${target.owner.name} wins!`);
-		}
+            
+            if (this.activePlayer.checkTokens()) {
+                this.activePlayer.activeToken.drawHTMLToken();
+                this.ready = true;
+            } else {
+                this.gameOver('No more tokens');
+            }
+        } else {
+			console.log('win');
+            this.gameOver(`${target.owner.name} wins!`)
+        }	
 	}
 
 
